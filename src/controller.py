@@ -1,5 +1,7 @@
 from __future__ import annotations
 from model.entities import Field
+from src.model.constants import MARKER_EMPTY
+
 
 class Referee:
 
@@ -21,4 +23,21 @@ class Referee:
     def __check_win_by_diagonal(self) -> bool: pass
 
 
+class Game:
+
+    def __init__(self):
+        self.__current_player = MARKER_EMPTY
+
+        self.__field = Field(3, 3)
+        self.__referee = Referee(self.__field)
+
+
+    def set_up(self) -> None:
+        pass
+
+    def make_move(self, x, y) -> None:
+        pass
+
+    def finish(self) -> None:
+        pass
 
