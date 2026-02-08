@@ -16,11 +16,32 @@ class Referee:
     def check_draw(self) -> bool:
         pass
 
-    def __check_win_by_row(self) -> bool: pass
+    def __check_win_by_row(self, field) -> bool:
 
-    def __check_win_by_column(self) -> bool: pass
+        for cell in field(0, self.__field):
 
-    def __check_win_by_diagonal(self) -> bool: pass
+            if cell[0] == cell[1] == cell[2]:
+                return True
+
+        return False
+
+    def __check_win_by_column(self, field) -> bool:
+
+        for col in range(0, 3, 1):
+
+            if field[0][col] == field[1][col] == field[2][col]:
+
+                return True
+
+        return False
+
+    def __check_win_by_diagonal(self, field) -> bool:
+
+        if field[0][0] == field[1][1] == field[2][2] or field[0][2] == field[1][1] == field[2][0]:
+
+            return True
+
+        return False
 
 
 class Game:
@@ -35,8 +56,16 @@ class Game:
     def set_up(self) -> None:
         pass
 
-    def make_move(self, x, y) -> None:
-        pass
+    def make_move(self, x, y) -> bool:
+
+        player = self.__current_player
+
+        if not player.try_make_move(): return False
+
+        player.make_move()
+
+        return True
+
 
     def finish(self) -> None:
         pass
